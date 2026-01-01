@@ -1,0 +1,49 @@
+.btn-home::after {
+  content: "";
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-home:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.homepage .slick-arrow::after {
+  border-inline-start-width: 3px;
+  border-block-start-width: 3px;
+  color: #000;
+  width: 20px;
+  height: 20px;
+}
+.homepage .slick-dots button::after{
+  background: #000;
+}
+.btn-comp {
+  color: white;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.btn-comp::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1;
+  transition: all 0.8s ease;
+}
+.btn-comp:hover::after {
+  left: 0;
+  width: 100%;
+}
+.btn-comp:hover {
+  color: black;
+}
