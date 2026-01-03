@@ -1,38 +1,32 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {getProductApi} from './services/productService'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getProductApi } from './services/productService';
 
-export const fetchProductApi = createAsyncThunk(
-  'product/fetch',
-  async (_,thunkAPI)=> {
-    try {
-      const res = await getProductApi();
-      return res.data
-    } catch (error) {
-      console.log("error: ", error);
-      return thunkAPI.rejectWithValue('Không thể tải sản phẩm');
-    }
+export const fetchProductApi = createAsyncThunk('products/fetch',
+  async () => getProductApi(),
+  {
+    condition: (_, { getState }) => {
+      const { products } = getState();
+      return products.list.length === 0;
+    },
   }
-)
+);
 
 const initialState = {
-  modal: false,
-  list: [],
-}
+  list: JSON.parse(localStorage.getItem('products')) || [],
+  loading: false,
+};
 
 export const productSlice = createSlice({
   name: 'productSlice',
   initialState,
-  reducers: {
-    openModal: (state)=>{
-      state.modal = !state.modal
-    }
-  },
-  extraReducers: (builder)=>{
+  reducers: {},
+  extraReducers: (builder) => {
     builder
-            .addCase(fetchProductApi.fulfilled,(state,action)=>{
-              state.list = action.payload
-            })
-  }
-})
-export const { openModal} = productSlice.actions
+    .addCase(fetchProductApi.fulfilled, (state, action) => {
+      state.list = action.payload;
+      localStorage.setItem('products', JSON.stringify(action.payload));
+    });
+  },
+});
+export const { openModal } = productSlice.actions;
 export default productSlice.reducer;

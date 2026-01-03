@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import {openModal} from "@/features/products/productSlice"
+import {openModal} from "@/features/cart/cartSlice"
 
 export const Header = (props) => {
   const {role} = props;
