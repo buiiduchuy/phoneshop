@@ -13,13 +13,17 @@ export const fetchProductApi = createAsyncThunk('products/fetch',
 
 const initialState = {
   list: JSON.parse(localStorage.getItem('products')) || [],
-  loading: false,
+  filter: 'all'
 };
 
 export const productSlice = createSlice({
   name: 'productSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    setFilter: (state,action)=>{
+      state.filter = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder
     .addCase(fetchProductApi.fulfilled, (state, action) => {
@@ -28,5 +32,5 @@ export const productSlice = createSlice({
     });
   },
 });
-export const { openModal } = productSlice.actions;
+export const { openModal,setFilter } = productSlice.actions;
 export default productSlice.reducer;

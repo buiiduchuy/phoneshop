@@ -6,13 +6,13 @@ import { CartModal } from '@/features/cart/components/CartModal';
 
 export const UserLayout = () => {
   return (
-    <>
-      <Header role="user" />
-      <main className="min-h-screen">
+    <div className='min-h-screen flex flex-col'>
+      <Header role="user"/>
+      <main className='flex-1'>
         <CartModal/>
         <Outlet />
       </main>
       <Footer role="user" />
-    </>
+    </div>
   );
 };

@@ -2,51 +2,68 @@ import React from 'react';
 import { Modal } from 'antd';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '@/features/cart/cartSlice';
+import { openModal, closeModal, clearModal } from '@/features/cart/cartSlice';
 import { CartItem } from './CartItem';
-
 
 export const CartModal = () => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const open = useSelector((state) => state.cart.modal);
-  const listCart = useSelector((state)=>state.cart.listCart)
-  console.log("listCart: ", listCart);
+  const listCart = useSelector((state) => state.cart.listCart);
   const dispatch = useDispatch();
 
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
       dispatch(openModal());
+      dispatch(clearModal());
       setConfirmLoading(false);
     }, 1500);
   };
 
-  const handleCancel = () => {
-    dispatch(openModal());
-  };
   return (
     <Modal
       title="Cart Manager"
       open={open}
       onOk={handleOk}
+      okText="Checkout"
       confirmLoading={confirmLoading}
-      onCancel={handleCancel}
+      onCancel={() => {
+        dispatch(closeModal());
+      }}
+      width={'90%'}
+      style={{ maxWidth: '900px' }}
     >
-      <table className='table-auto'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-         <CartItem/>
-        </tbody>
-      </table>
+      <div className="relative shadow-xs rounded-base">
+        <table className="w-full border border-collapse">
+          <thead>
+            <tr className="bg-gray-200 border">
+              <th scope="col" className="px-4 py-3">
+                Name
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Image
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Price
+              </th>
+              <th scope="col" className="px-4 py-3" style={{ width: '115px' }}>
+                Quantity
+              </th>
+              <th scope="col" className="px-4 py-3">
+                Total
+              </th>
+              <th scope="col" className="px-4 py-3" style={{ width: '130px' }}>
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {listCart.map((item) => (
+              <CartItem key={item.id} prod={item} />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Modal>
   );
 };

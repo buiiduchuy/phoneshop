@@ -1,28 +1,21 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import {openModal} from "@/features/cart/cartSlice"
+import { CartButton } from "./CartButton";
 
 export const Header = (props) => {
   const {role} = props;
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
-
   return (
-    <header className="shadow shadow-gray-400">
+    <header className="shadow shadow-gray-400 sticky top-0 w-full z-50">
       <nav className="bg-white">
         <div className="max-w-330 max-w- mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="text-3xl font-bold">LOGO</Link>
           {
             role=='user'? <>
               <div className="hidden md:flex items-center gap-6">
-                <a href="#" className="btn-home text-gray-700 font-semibold uppercase relative">Home</a>
+                {/* <Link to="/" className="btn-home text-gray-700 font-semibold uppercase relative">Home</Link> */}
                 {/* Cart */}
-                <Button className="relative text-gray-700" icon={<ShoppingCartOutlined className="text-2xl" onClick={()=>dispatch(openModal())}/>} type='text'>
-                    <span className="absolute -top-1 -right-1 bg-gray-500 text-white text-xs px-1.5 rounded-full">0</span>
-                </Button>
+                <CartButton/>
                 <Link to="/admin" className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">Admin </Link>
               </div>
             </> : <>

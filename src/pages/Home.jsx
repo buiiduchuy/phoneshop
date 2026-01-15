@@ -7,7 +7,7 @@ import { ProductList } from '@/features/products/components/ProductList';
 import {fetchProductApi} from '@/features/products/productSlice.js'
 import { SelectItem } from '@/features/products/components/SelectItem';
 
-export const Home = () => {
+const Home = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(fetchProductApi())
@@ -31,3 +31,5 @@ export const Home = () => {
     </div>
   )
 }
+
+export default Home

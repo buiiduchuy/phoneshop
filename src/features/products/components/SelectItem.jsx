@@ -1,14 +1,18 @@
 import React from 'react'
 import {Select} from 'antd'
+import { useDispatch } from 'react-redux'
+import {setFilter} from '../productSlice'
 
 export const SelectItem = () => {
+  const dispatch = useDispatch()
   return (
     <Select
     placeholder="Filter"
+    onChange={(value)=>{dispatch(setFilter(value))}}
     options={[
-      { value: '1', label: 'all' },
-      { value: '2', label: 'Iphone' },
-      { value: '3', label: 'SamSung' },
+      { value: 'all', label: 'all' },
+      { value: 'apple', label: 'Apple' },
+      { value: 'samsung', label: 'SamSung' },
     ]}
     style={{width:'110px'}}
   />

@@ -1,7 +1,10 @@
 import React from 'react'
+import {Modal} from 'antd'
 
 export const ModalComp = () => {
   return (
-    <div>ModalComp</div>
+    <Modal>
+
+    </Modal>
   )
 }
