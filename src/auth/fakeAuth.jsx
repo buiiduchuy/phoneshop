@@ -20,17 +20,17 @@ export const decodefakeJWT = (token) => {
 
 //save token
 export const saveToken = (token) => {
-  localStorage.setItem(TOKEN_KEY, token);
+  return localStorage.setItem(TOKEN_KEY, token);
 };
 
 // get token
 export const getToken = () => {
-  localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY);
 };
 
 // remove token
 export const removeToken = () => {
-  localStorage.removeToken(TOKEN_KEY);
+  localStorage.removeItem(TOKEN_KEY);
 };
 
 

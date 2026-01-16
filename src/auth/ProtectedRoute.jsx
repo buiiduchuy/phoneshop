@@ -8,7 +8,7 @@ const ProtectedRoute = ({ requiredRole }) => {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
   const user = getUserFromToken();
-  if (!requiredRole && user.role !== requiredRole) {
+  if (requiredRole && user.role !== requiredRole) {
     return <Navigate to="/403" replace />;
   }
   return <Outlet />;

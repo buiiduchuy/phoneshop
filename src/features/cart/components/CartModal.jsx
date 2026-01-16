@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'antd';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal, clearModal } from '@/features/cart/cartSlice';
+import {closeModal, clearModal } from '@/features/cart/cartSlice';
 import { CartItem } from './CartItem';
 
 export const CartModal = () => {
@@ -14,7 +14,7 @@ export const CartModal = () => {
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
-      dispatch(openModal());
+      dispatch(closeModal());
       dispatch(clearModal());
       setConfirmLoading(false);
     }, 1500);

@@ -33,6 +33,8 @@ export const login = (username, password) => {
   });
 
   saveToken(token);
+  startAutoLogout()
+  return user;
 };
 
 //logout
@@ -60,6 +62,6 @@ export const startAutoLogout = () => {
 
   logoutTime = setTimeout(() => {
     logout();
-    window.location.href('/login');
+    window.location.href='/login';
   }, remainingTime);
 };

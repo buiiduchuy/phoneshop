@@ -1,5 +1,5 @@
 .btn-home::after {
-  content: "";
+  content: '';
   background: #000;
   position: absolute;
   bottom: 0;
@@ -21,16 +21,17 @@
   width: 20px;
   height: 20px;
 }
-.homepage .slick-dots button::after{
+.homepage .slick-dots button::after {
   background: #000;
 }
 .btn-comp {
   color: white;
   transition: all 0.5s ease;
   cursor: pointer;
+  width: 100%;
 }
 .btn-comp::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 0;
   right: 0;
@@ -38,7 +39,7 @@
   bottom: 0;
   background: #fff;
   z-index: 1;
-  transition: all 0.8s ease;
+  transition: all 1s ease;
 }
 .btn-comp:hover::after {
   left: 0;
@@ -46,4 +47,15 @@
 }
 .btn-comp:hover {
   color: black;
+}
+input:empty ~ label {
+  background: #fff;
+  color: #343131;
+  transition: all 0.5s ease;
+  transform: translateY(0);
+}
+input:not(:placeholder-shown) ~ label,
+input:focus ~ label {
+  transform: translateY(-25px);
+  font-size: 12px;
 }
