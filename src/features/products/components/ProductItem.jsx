@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/component/Button';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '@/features/cart/cartSlice';
+import { addToCart } from '@/features/cart/CartSlice';
 import { Link } from 'react-router-dom';
 import { toastify } from '@/utils/toastify';
 
@@ -33,7 +33,10 @@ export const ProductItem = (props) => {
           <Button
             text={'Add to cart'}
             className="ms-2"
-            onClick={() => {dispatch(addToCart(product));toastify("Added to cart successfully")}}
+            onClick={() => {
+              dispatch(addToCart(product));
+              toastify('Added to cart successfully');
+            }}
           />
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'antd';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {closeModal, clearModal } from '@/features/cart/cartSlice';
+import { closeModal, clearModal } from '@/features/cart/CartSlice';
 import { CartItem } from './CartItem';
 
 export const CartModal = () => {

@@ -59,3 +59,6 @@ input:focus ~ label {
   transform: translateY(-25px);
   font-size: 12px;
 }
+.infoPromotion {
+  background: linear-gradient(272.75deg, #f38c25 38.99%, #fb6848 76.29%);
+}
