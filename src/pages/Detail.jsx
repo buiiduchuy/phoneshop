@@ -6,6 +6,7 @@ import { CountDown } from '@/component/CountDown';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '@/features/cart/CartSlice';
 import { toastify } from '@/utils/toastify';
+import { TabInfomationDetail } from '@/component/TabInfomationDetail';
 
 const Detail = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const Detail = () => {
   return (
     <div className="max-w-330 mx-auto pageDetail">
       <div className="py-10">
-        <div className="detail-product flex">
+        <section className="detail-product flex mb-10">
           <aside className="detail-left flex-1 pr-2.5">
             <figure>
               <img
@@ -95,7 +96,10 @@ const Detail = () => {
               </div>
             </div>
           </aside>
-        </div>
+        </section>
+        <section className="info-product">
+          <TabInfomationDetail prod={prod} />
+        </section>
       </div>
     </div>
   );
