@@ -97,7 +97,7 @@ const Detail = () => {
             </div>
           </aside>
         </section>
-        <section className="info-product">
+        <section className="info-product max-w-125 mx-auto">
           <TabInfomationDetail prod={prod} />
         </section>
       </div>

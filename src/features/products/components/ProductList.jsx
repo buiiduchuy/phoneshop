@@ -8,7 +8,7 @@ export const ProductList = () => {
 
   return (
     <div className="grid grid-cols-4 gap-8">
-      {list?.data.map((item) => (
+      {list.map((item) => (
         <ProductItem key={item.id} product={item} />
       ))}
     </div>

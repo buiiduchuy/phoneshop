@@ -16,7 +16,7 @@ export const CartItem = React.memo(({ prod }) => {
       </td>
       <td className="px-4 font-medium text-center">${prod.price}</td>
       <td className="px-4 font-medium text-center">{prod.quantity}</td>
-      <td className="px-4 font-medium text-center">${Number(prod.price)}</td>
+      <td className="px-4 font-medium text-center">${(prod.quantity * prod.price).toFixed(2)}</td>
       <td className="px-4 text-center">
         <Button
           type="text"
