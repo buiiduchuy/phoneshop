@@ -5,30 +5,33 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
+
+import PromotionImages from '@/assets/promotion';
 
 export const Promotion = () => {
   return (
     <div>
       <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
+        slidesPerView={4}
+        loop={true}
+        speed={8000}
         autoplay={{
-          delay: 2500,
-          disableOnInteraction: true,
+          delay: 0,
+          disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: false,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        allowTouchMove={false}
+        centeredSlides={false}
+        modules={[Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
+        {PromotionImages.map((img) => (
+          <SwiperSlide key={img.id}>
+            <figure className="overflow-hidden w-50 h-20 object-cover p-2.5">
+              <img src={img.src} alt={img.alt} className="w-full h-full" />
+            </figure>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

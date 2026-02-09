@@ -62,3 +62,6 @@ input:focus ~ label {
 .infoPromotion {
   background: linear-gradient(272.75deg, #f38c25 38.99%, #fb6848 76.29%);
 }
+.mySwiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
