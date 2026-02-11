@@ -1,4 +1,5 @@
 import { SearchProductAdmin } from '@/component/SearchProductAdmin';
+import { ProductListAdmin } from '@/features/products/components/ProductListAdmin';
 import React from 'react';
 
 const Admin = () => {
@@ -7,8 +8,11 @@ const Admin = () => {
       <div className="mb-10">
         <h3 className="text-center py-3 font-bold text-4xl mb-5">Product Manager</h3>
       </div>
-      <div>
+      <div className="mb-10">
         <SearchProductAdmin />
+      </div>
+      <div className="mb-10">
+        <ProductListAdmin />
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProductApi.fulfilled, (state, action) => {
       state.list = action.payload;
-      // localStorage.setItem('products', JSON.stringify(action.payload));
+      localStorage.setItem('products', JSON.stringify(action.payload));
     });
   },
 });
