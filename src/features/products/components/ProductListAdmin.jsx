@@ -2,16 +2,16 @@ import { Table } from 'antd';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-export const ProductListAdmin = () => {
+export const ProductListAdmin = (props) => {
+  const { setModal } = props;
   const list = useSelector((state) => state.products.list);
-  console.log('list: ', list);
 
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      sorter: (a, b) => a.name.localeCompare(b.name),
+      sorter: (a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
     },
     {
       title: 'Image',
@@ -38,16 +38,39 @@ export const ProductListAdmin = () => {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
-      sorter: true,
+      sorter: (a, b) => a.price - b.price,
+      render: (price) => <span>${price}</span>,
     },
     {
       title: 'Action',
       key: 'action',
-      render: () => {
+      render: (_, record) => {
         return (
           <div className="flex gap-2">
-            <button className="rounded-md bg-amber-500 text-white px-4 py-1.5">Edit</button>
-            <button className="rounded-md bg-red-500 text-white px-4 py-1.5">Deleta</button>
+            <button
+              className="rounded-md bg-amber-500 text-white px-4 py-1.5 cursor-pointer hover:opacity-80"
+              onClick={() =>
+                setModal({
+                  open: true,
+                  mode: 'edit',
+                  product: record,
+                })
+              }
+            >
+              Edit
+            </button>
+            <button
+              className="rounded-md bg-red-500 text-white px-4 py-1.5 cursor-pointer hover:opacity-80"
+              onClick={() =>
+                setModal({
+                  open: true,
+                  mode: 'delete',
+                  product: record,
+                })
+              }
+            >
+              Delete
+            </button>
           </div>
         );
       },

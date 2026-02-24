@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getProductApi } from './services/productService';
+import {
+  getProductApi,
+  createProductApi,
+  editProductApi,
+  deleteProductApi,
+} from './services/productService';
 
-export const fetchProductApi = createAsyncThunk(
+export const fetchProduct = createAsyncThunk(
   'products/fetch',
   async () => {
     const res = await getProductApi();
@@ -14,6 +19,20 @@ export const fetchProductApi = createAsyncThunk(
     },
   }
 );
+
+export const createProduct = createAsyncThunk('products/create', async (payload) => {
+  const res = await createProductApi(payload);
+  return res.data;
+});
+
+export const updateProduct = createAsyncThunk('products/update', async ({ id, payload }) => {
+  const res = await editProductApi(id, payload);
+  return res.data;
+});
+export const deleteProduct = createAsyncThunk('products/detele', async (id) => {
+  const res = await deleteProductApi(id);
+  return res.data;
+});
 
 const initialState = {
   list: JSON.parse(localStorage.getItem('products')) || [],
@@ -29,7 +48,7 @@ export const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProductApi.fulfilled, (state, action) => {
+    builder.addCase(fetchProduct.fulfilled, (state, action) => {
       state.list = action.payload;
       localStorage.setItem('products', JSON.stringify(action.payload));
     });

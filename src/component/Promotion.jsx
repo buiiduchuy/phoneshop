@@ -27,7 +27,7 @@ export const Promotion = () => {
       >
         {PromotionImages.map((img) => (
           <SwiperSlide key={img.id}>
-            <figure className="overflow-hidden w-50 h-20 object-cover p-2.5">
+            <figure className="overflow-hidden w-50 h-20 object-cover p-2.5 mx-auto">
               <img src={img.src} alt={img.alt} className="w-full h-full" />
             </figure>
           </SwiperSlide>
