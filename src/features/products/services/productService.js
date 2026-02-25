@@ -13,16 +13,16 @@ export const getProductApiById = async (id) => {
 };
 
 // ADD PRODUCT
-export const createProductApi = async () => {
-  return axios.post(`${BASE_URL}`);
+export const createProductApi = async (payload) => {
+  return axios.post(BASE_URL, payload);
 };
 
 // EDIT PRODUCT
-export const editProductApi = async (id) => {
-  return axios.put(`${BASE_URL}:/${id}`);
+export const editProductApi = async (id, payload) => {
+  return axios.put(`${BASE_URL}/${id}`, payload);
 };
 
 // DELETE PRODUCT
 export const deleteProductApi = async (id) => {
-  return axios.delete(`${BASE_URL}:/${id}`);
+  return axios.delete(`${BASE_URL}/${id}`);
 };

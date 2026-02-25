@@ -30,17 +30,17 @@ const Detail = () => {
 
   if (loading) {
     return (
-      <div className="max-w-330 mx-auto pt-10">
+      <div className="max-w-330 mx-auto pt-10 px-4">
         <Skeleton />
       </div>
     );
   }
 
   return (
-    <div className="max-w-330 mx-auto pageDetail">
+    <div className="max-w-330 mx-auto pageDetail px-4">
       <div className="py-10">
-        <section className="detail-product flex mb-10">
-          <aside className="detail-left flex-1 pr-2.5">
+        <section className="detail-product md:flex mb-10">
+          <aside className="detail-left flex-1 md:pr-2.5 md:mb-0 mb-5">
             <figure>
               <img
                 src={`${prod.img}`}
@@ -51,9 +51,10 @@ const Detail = () => {
           </aside>
           <aside className="detail-right flex-1">
             <div className="text-base">
-              <h3 className="text-2xl mb-2.5 font-bold">{prod.name}</h3>
-              <p className="mb-2.5 -indent-30 pl-30">
-                <span className="font-bold text-xl">Description</span> : {prod.desc}
+              <h3 className="md:text-2xl text-xl mb-2.5 font-bold">{prod.name}</h3>
+              <p className="mb-2.5 md:-indent-30 md:pl-30">
+                <span className="font-bold md:text-xl">Description</span> :{' '}
+                <span className="md:text-lg text-[14px]">{prod.desc}</span>
               </p>
             </div>
             <div className="infoPromotion py-5 px-2.5 rounded-[10px] text-white">
@@ -67,7 +68,7 @@ const Detail = () => {
                   <CountDown hour={10} />
                 </div>
               </div>
-              <div className="bg-gray-600 p-2.5 rounded-[5px]">
+              <div className="bg-gray-600 p-2.5 rounded-[5px] text-[14px] md:text-[16px]">
                 <h4 className="mb-5">Promotions</h4>
                 <ul className="py-5 border-dashed border-t ps-2.5 list-disc">
                   <li>Prices and promotions may end earlier than expected</li>

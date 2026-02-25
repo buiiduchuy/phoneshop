@@ -78,5 +78,16 @@ export const ProductListAdmin = (props) => {
   ];
 
   const dataSource = list;
-  return <Table columns={columns} dataSource={dataSource} rowKey="id" />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      rowKey="id"
+      pagination={{
+        defaultPageSize: 10,
+        pageSizeOptions: ['5', '10', '20', '50'],
+        showSizeChanger: true,
+      }}
+    />
+  );
 };

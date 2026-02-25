@@ -1,7 +1,7 @@
-import logo1 from './apple.jpeg';
+import logo1 from './apple.png';
 import logo2 from './gmail.png';
-import logo3 from './google.jpeg';
-import logo4 from './netflex.png';
+import logo3 from './google.png';
+import logo4 from './netflix.png';
 import logo5 from './samsung.png';
 import logo6 from './xiaomi.jpeg';
 

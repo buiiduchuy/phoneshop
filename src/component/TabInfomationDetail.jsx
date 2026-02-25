@@ -7,18 +7,18 @@ export const TabInfomationDetail = (props) => {
   const items = [
     {
       key: '1',
-      label: <span className="font-medium text-xl text-gray-800">Description</span>,
+      label: <span className="font-medium md:text-xl text-[16px] text-gray-800">Description</span>,
       children: <p>{prod.desc}</p>,
     },
     {
       key: '2',
-      label: <span className="font-medium text-xl text-gray-800">Infomation</span>,
+      label: <span className="font-medium md:text-xl text-[16px] text-gray-800">Infomation</span>,
       children: (
         <div>
           <table className="table">
             <tr className="mb-2.5 block">
               <td>
-                <span className="inline-block min-w-40 bg-gray-100 p-2.5">Name</span>
+                <span className="inline-block md:min-w-40 min-w-30 bg-gray-100 p-2.5">Name</span>
               </td>
               <td>
                 <span className="inline-block p-2.5">{prod.name}</span>
@@ -26,7 +26,9 @@ export const TabInfomationDetail = (props) => {
             </tr>
             <tr className="mb-2.5 block">
               <td>
-                <span className="inline-block min-w-40 bg-gray-100 p-2.5">Front Camera</span>
+                <span className="inline-block md:min-w-40 min-w-30 bg-gray-100 p-2.5">
+                  Front Camera
+                </span>
               </td>
               <td>
                 <span className="inline-block p-2.5">{prod.frontCamera}</span>
@@ -34,7 +36,9 @@ export const TabInfomationDetail = (props) => {
             </tr>
             <tr className="mb-2.5 block">
               <td>
-                <span className="inline-block min-w-40 bg-gray-100 p-2.5">Back Camera</span>
+                <span className="inline-block md:min-w-40 min-w-30 bg-gray-100 p-2.5">
+                  Back Camera
+                </span>
               </td>
               <td>
                 <span className="inline-block p-2.5">{prod.backCamera}</span>
@@ -42,7 +46,7 @@ export const TabInfomationDetail = (props) => {
             </tr>
             <tr className="mb-2.5 block">
               <td>
-                <span className="inline-block min-w-40 bg-gray-100 p-2.5">Screen</span>
+                <span className="inline-block md:min-w-40 min-w-30 bg-gray-100 p-2.5">Screen</span>
               </td>
               <td>
                 <span className="inline-block p-2.5">{prod.screen}</span>
@@ -50,7 +54,7 @@ export const TabInfomationDetail = (props) => {
             </tr>
             <tr className="mb-2.5 block">
               <td>
-                <span className="inline-block min-w-40 bg-gray-100 p-2.5">Type</span>
+                <span className="inline-block md:min-w-40 min-w-30 bg-gray-100 p-2.5">Type</span>
               </td>
               <td>
                 <span className="inline-block p-2.5">{prod.type}</span>

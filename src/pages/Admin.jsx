@@ -18,7 +18,7 @@ const Admin = () => {
       <div className="mb-10">
         <div className="flex gap-2">
           <div className="w-3/4">
-            <SearchProductAdmin />
+            <SearchProductAdmin setModal={setModal} />
           </div>
           <div className="w-1/4">
             <Button

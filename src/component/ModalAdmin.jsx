@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Modal } from 'antd';
-import FormItem from 'antd/es/form/FormItem';
+import { useDispatch } from 'react-redux';
+import { createProduct, updateProduct, deleteProduct } from '@/features/products/productSlice';
 
 export const ModalAdmin = (props) => {
   const { modal, setModal } = props;
-  console.log('modal: ', modal);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
-  console.log('form: ', form);
+
+  const dispatch = useDispatch();
 
   const handleCancel = () => {
     setModal({
@@ -16,19 +17,40 @@ export const ModalAdmin = (props) => {
       product: null,
     });
   };
-  const handleOk = () => {
+  const handleOk = async () => {
     setConfirmLoading(true);
-    setTimeout(() => {
+    try {
+      if (modal.mode === 'create') {
+        const value = await form.validateFields();
+        console.log('value: ', value);
+        await dispatch(createProduct(value)).unwrap();
+      }
+      if (modal.mode === 'edit') {
+        const value = await form.validateFields();
+        await dispatch(
+          updateProduct({
+            id: modal.product.id,
+            payload: value,
+          })
+        ).unwrap();
+      }
+      if (modal.mode === 'delete') {
+        await dispatch(deleteProduct(modal.product.id)).unwrap();
+      }
       setModal({
         open: false,
         mode: 'create',
         product: null,
       });
+    } catch (error) {
+      console.log('error: ', error);
+    } finally {
       setConfirmLoading(false);
-    }, 500);
+    }
   };
 
   useEffect(() => {
+    if (!modal.open) return;
     if (modal.mode === 'edit' && modal.product) {
       form.setFieldsValue(modal.product);
     }
@@ -40,11 +62,13 @@ export const ModalAdmin = (props) => {
   return (
     <Modal
       title={
-        modal.mode == 'create' ? (
-          <h3 className="text-center mb-5 text-2xl">Add product</h3>
-        ) : (
-          <h3 className="text-center mb-5 text-2xl">Edit product</h3>
-        )
+        <h3 className="text-center mb-5 text-2xl">
+          {modal.mode === 'create'
+            ? 'Add Product'
+            : modal.mode === 'edit'
+              ? 'Edit Product'
+              : 'Delete Product'}
+        </h3>
       }
       open={modal.open}
       onOk={handleOk}
@@ -52,47 +76,73 @@ export const ModalAdmin = (props) => {
       onCancel={handleCancel}
       className={'modalAdmin'}
     >
-      <Form form={form}>
-        <FormItem label={<span className="inline-block mr-2.5 font-medium">Name</span>} name="name">
-          <Input />
-        </FormItem>
-        <FormItem
-          label={<span className="inline-block mr-2.5 font-medium">Price</span>}
-          name="price"
-        >
-          <Input />
-        </FormItem>
-        <FormItem
-          label={<span className="inline-block mr-2.5 font-medium">Description</span>}
-          name="desc"
-        >
-          <Input />
-        </FormItem>
-        <FormItem
-          label={<span className="inline-block mr-2.5 font-medium">Back Camera</span>}
-          name="backCamera"
-        >
-          <Input />
-        </FormItem>
-        <FormItem
-          label={<span className="inline-block mr-2.5 font-medium">Front Camera</span>}
-          name="frontCamera"
-        >
-          <Input />
-        </FormItem>
-        <FormItem label={<span className="inline-block mr-2.5 font-medium">Image</span>} name="img">
-          <Input />
-        </FormItem>
-        <FormItem
-          label={<span className="inline-block mr-2.5 font-medium">Screen</span>}
-          name="screen"
-        >
-          <Input />
-        </FormItem>
-        <FormItem label={<span className="inline-block mr-2.5 font-medium">Type</span>} name="type">
-          <Input />
-        </FormItem>
-      </Form>
+      {modal.mode === 'delete' ? (
+        <>
+          <div className="text-xl">
+            Delete product by id :
+            <span className="font-bold text-red-500"> {modal.product.id}</span> ?
+          </div>
+        </>
+      ) : (
+        <Form form={form}>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Name</span>}
+            name="name"
+            rules={[{ required: true, message: 'Name is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Price</span>}
+            name="price"
+            rules={[{ required: true, message: 'Price is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Description</span>}
+            name="desc"
+            rules={[{ required: true, message: 'Description is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Back Camera</span>}
+            name="backCamera"
+            rules={[{ required: true, message: 'BackCamera is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Front Camera</span>}
+            name="frontCamera"
+            rules={[{ required: true, message: 'FrontCamera is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Image</span>}
+            name="img"
+            rules={[{ required: true, message: 'Image is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Screen</span>}
+            name="screen"
+            rules={[{ required: true, message: 'Screen is required' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={<span className="inline-block mr-2.5 font-medium">Type</span>}
+            name="type"
+            rules={[{ required: true, message: 'Type is required' }]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
+      )}
     </Modal>
   );
 };

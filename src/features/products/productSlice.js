@@ -29,7 +29,8 @@ export const updateProduct = createAsyncThunk('products/update', async ({ id, pa
   const res = await editProductApi(id, payload);
   return res.data;
 });
-export const deleteProduct = createAsyncThunk('products/detele', async (id) => {
+
+export const deleteProduct = createAsyncThunk('products/delete', async (id) => {
   const res = await deleteProductApi(id);
   return res.data;
 });
@@ -48,11 +49,30 @@ export const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProduct.fulfilled, (state, action) => {
-      state.list = action.payload;
-      localStorage.setItem('products', JSON.stringify(action.payload));
-    });
+    builder
+      .addCase(fetchProduct.fulfilled, (state, action) => {
+        state.list = action.payload;
+        localStorage.setItem('products', JSON.stringify(action.payload));
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.list.push(action.payload);
+        localStorage.setItem('products', JSON.stringify(state.list));
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const index = state.list.findIndex((prod) => prod.id === action.payload.id);
+        if (index !== -1) {
+          state.list[index] = action.payload;
+        }
+        localStorage.setItem('products', JSON.stringify(state.list));
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        console.log('action: ', action.payload.id);
+        state.list = state.list.filter((prod) => {
+          return prod.id !== action.payload.id;
+        });
+        localStorage.setItem('products', JSON.stringify(state.list));
+      });
   },
 });
-export const { openModal, setFilter } = productSlice.actions;
+export const { setFilter } = productSlice.actions;
 export default productSlice.reducer;
