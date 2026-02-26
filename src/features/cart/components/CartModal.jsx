@@ -30,7 +30,13 @@ export const CartModal = () => {
         dispatch(closeModal());
       }}
       width={'90%'}
-      style={{ maxWidth: '900px' }}
+      style={{
+        maxWidth: '900px',
+        body: {
+          overflowY: 'auto', // Enable vertical scrolling
+          maxHeight: 'calc(100vh - 200px)', // Set a maximum height
+        },
+      }}
     >
       <div className="relative shadow-xs rounded-base">
         <table className="w-full border border-collapse">

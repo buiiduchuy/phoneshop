@@ -16,11 +16,11 @@ const Admin = () => {
         <h3 className="text-center py-3 font-bold text-4xl mb-5">Product Manager</h3>
       </div>
       <div className="mb-10">
-        <div className="flex gap-2">
-          <div className="w-3/4">
+        <div className="md:flex gap-2">
+          <div className="md:w-3/4 mb-2.5">
             <SearchProductAdmin setModal={setModal} />
           </div>
-          <div className="w-1/4">
+          <div className="md:w-1/4">
             <Button
               text={'Add product'}
               onClick={() =>

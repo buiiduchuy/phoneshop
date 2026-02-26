@@ -46,27 +46,27 @@ export const Header = (props) => {
         </div>
 
         {/* Mobile menu */}
-        {open && (
-          <div className="md:hidden px-4 pb-4 space-y-3">
-            {role == 'user' ? (
-              <>
-                {/* <Link to="#" className="block text-gray-700">
-                  Home
-                </Link> */}
-                <Link
-                  to="/admin"
-                  className="block text-center bg-gray-600 text-white py-2 rounded-md"
-                >
-                  Admin
-                </Link>
-              </>
-            ) : (
-              <Link to="/" className="block text-center bg-gray-600 text-white py-2 rounded-md">
-                Shop
-              </Link>
-            )}
-          </div>
-        )}
+        <div
+          className={`
+            md:hidden px-4 overflow-hidden
+            transition-all duration-300 ease-in-out
+            ${open ? 'max-h-40 opacity-100 pb-4' : 'max-h-0 opacity-0'}
+          `}
+        >
+          {role == 'user' ? (
+            <Link
+              to="/admin"
+              onClick={() => setOpen(false)}
+              className="block text-center bg-gray-600 text-white py-2 rounded-md"
+            >
+              Admin
+            </Link>
+          ) : (
+            <Link to="/" className="block text-center bg-gray-600 text-white py-2 rounded-md">
+              Shop
+            </Link>
+          )}
+        </div>
       </nav>
     </header>
   );

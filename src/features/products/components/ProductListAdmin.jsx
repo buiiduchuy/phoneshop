@@ -82,6 +82,7 @@ export const ProductListAdmin = (props) => {
     <Table
       columns={columns}
       dataSource={dataSource}
+      scroll={{ x: '767px' }}
       rowKey="id"
       pagination={{
         defaultPageSize: 10,

@@ -52,7 +52,7 @@ export const SearchProductAdmin = (props) => {
         onChange={handleSearch}
       />
       {result.length > 0 && (
-        <div className="absolute w-full p-2.5 top-full left-0 border border-gray-100 shadow z-10 bg-white">
+        <div className="absolute w-full p-2.5 top-full left-0 border border-gray-100 shadow z-100 bg-white">
           {result.map((item) => (
             <div
               key={item.id}

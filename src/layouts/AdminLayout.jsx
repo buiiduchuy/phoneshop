@@ -7,7 +7,7 @@ export const AdminLayout = () => {
   return (
     <div className="min-h-screen">
       <Header role="admin" />
-      <main className="min-h-screen">
+      <main className="min-h-screen px-4">
         <Outlet />
       </main>
       <Footer role="admin" />
