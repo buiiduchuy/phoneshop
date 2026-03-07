@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartButton } from './CartButton';
+import { getToken, removeToken } from '@/auth/fakeAuth';
 
 export const Header = (props) => {
   const { role } = props;
   const [open, setOpen] = useState(false);
+  const token = getToken();
+  const [logout,setLogout] = useState(token)
   return (
     <header className="shadow shadow-gray-400 sticky top-0 w-full z-50">
       <nav className="bg-white">
@@ -22,14 +25,37 @@ export const Header = (props) => {
               >
                 Admin
               </Link>
+              {logout && logout.length > 0 && (
+                <Link
+                  onClick={() => {
+                    return (removeToken(), setLogout());
+                  }}
+                  className="md:block hidden min-w-20 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-center"
+                >
+                  Logout
+                </Link>
+              )}
             </div>
           ) : (
-            <Link
-              to="/"
-              className="md:block hidden min-w-20 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-center"
-            >
-              Shop
-            </Link>
+            <div className='flex gap-6'>
+              <Link
+                to="/"
+                className="md:block hidden min-w-20 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-center"
+              >
+                Shop
+              </Link>
+              {logout && logout.length > 0 && (
+                <Link
+                to="/"
+                  onClick={() => {
+                    return (removeToken(), setLogout());
+                  }}
+                  className="md:block hidden min-w-20 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-center"
+                >
+                  Logout
+                </Link>
+              )}
+            </div>
           )}
           {/* Mobile toggle */}
           <button className="md:hidden text-gray-700" onClick={() => setOpen(!open)}>
